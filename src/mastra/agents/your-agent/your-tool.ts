@@ -3,7 +3,7 @@ import { z } from "zod";
 import { Agent } from "@mastra/core/agent";
 import { model } from "../../config";
 
-// Create the trading assistant agent
+//  Initialize the trading assistant agent
 const agent = new Agent({
   name: "Trading Tool Agent",
   model,
@@ -12,7 +12,6 @@ You are a trading assistant designed to help users gain insights into their trad
   `,
 });
 
-// Async function to call the agent with user input
 const analyzeTrading = async (context: {
   experience: string;
   challenges: string;
@@ -37,7 +36,7 @@ Based on the above, provide:
 Return bullet points for clarity.
 `;
 
-  const response = await agent.run(prompt);
+  const response = await agent.generate(prompt);
   const text = response.text;
 
   const suggestions = text
